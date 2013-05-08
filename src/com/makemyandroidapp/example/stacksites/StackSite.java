@@ -1,5 +1,9 @@
 package com.makemyandroidapp.example.stacksites;
 
+
+/*
+ * Data object that holds all of our information about a StackExchange Site.
+ */
 public class StackSite {
 
 	private String name;

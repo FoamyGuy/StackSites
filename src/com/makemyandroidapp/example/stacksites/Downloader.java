@@ -10,6 +10,9 @@ import java.net.URLConnection;
 
 import android.util.Log;
 
+/*
+ * Helper class for downloading a file.
+ */
 public class Downloader {
 
 	//Tag for Log statements
@@ -19,7 +22,7 @@ public class Downloader {
 	static final int POST_PROGRESS = 1;
 	
 	/************************************************
-	 * Download a file from the internet and store it locally
+	 * Download a file from the Internet and store it locally
 	 * 
 	 * @param URL - the url of the file to download
 	 * @param fos - a FileOutputStream to save the downloaded file to.

@@ -23,6 +23,11 @@ import org.xml.sax.SAXException;
 import android.content.Context;
 import android.util.Log;
 
+/*
+ * Helper object for parsing StackExchange Sites listen from XML source.
+ * This class is modeled after the example given here:
+ * http://www.androidhive.info/2011/11/android-xml-parsing-tutorial/
+ */
 public class SitesXmlParser {
 	static final String KEY_SITE = "site";
 	static final String KEY_NAME = "name";
@@ -30,8 +35,10 @@ public class SitesXmlParser {
 	static final String KEY_ABOUT = "about";
 	static final String KEY_IMAGE_URL = "image";
 
-	
-	
+	/*
+	 * High level method that will read the xml file and parse it 
+	 * into a List of StackSite objects.
+	 */
 	public static List<StackSite> getStackSitesFromFile(Context ctx){
 		List<StackSite> stackSites = new ArrayList<StackSite>();
 		
@@ -56,6 +63,8 @@ public class SitesXmlParser {
 		
 		return stackSites;
 	}
+	
+	//Helper method to read the file and return its text.
 	private static String readFile(Context ctx){
 		String xml = "";
 		try {
@@ -78,11 +87,13 @@ public class SitesXmlParser {
 		return xml;
 	}
 	
+	//Get a value from an XML Element.
 	private static String getValue(Element item, String str) {
 	    NodeList n = item.getElementsByTagName(str);
 	    return getElementValue(n.item(0));
 	}
-	 
+	
+	//Get an Element Value from an XML Node object.
 	private static String getElementValue( Node elem ) {
 		 StringBuilder value = new StringBuilder();
          Node child;
@@ -100,6 +111,7 @@ public class SitesXmlParser {
          return "";
 	  } 
 	
+	//Get dom Document object from raw text.
 	private static Document getDomElement(String xml){
         Document doc = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

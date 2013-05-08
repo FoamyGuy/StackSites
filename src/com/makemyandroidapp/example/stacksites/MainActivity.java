@@ -27,7 +27,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.i("StackSites", "OnCreate()");
 		setContentView(R.layout.activity_main);
+		
+		//Get reference to our ListView
 		sitesList = (ListView)findViewById(R.id.sitesList);
+		
+		//Set the click listener to launch the browser when a row is clicked.
 		sitesList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -40,6 +44,11 @@ public class MainActivity extends Activity {
 			}
 			
 		});
+		
+		/*
+		 * If network is available download the xml from the Internet.
+		 * If not then try to use the local file from last time.
+		 */
 		if(isNetworkAvailable()){
 			Log.i("StackSites", "starting download Task");
 			SitesDownloadTask download = new SitesDownloadTask();
@@ -51,6 +60,7 @@ public class MainActivity extends Activity {
 
 	}
 	
+	//Helper method to determin if Internet connection is available.
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -58,11 +68,15 @@ public class MainActivity extends Activity {
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	} 
 	
-	
+	/*
+	 * AsyncTask that will download the xml file for us and store it locally.
+	 * After the download is done we'll parse the local file.
+	 */
 	private class SitesDownloadTask extends AsyncTask<Void, Void, Void>{
 
 		@Override
 		protected Void doInBackground(Void... arg0) {
+			//Download the file
 			try {
 				Downloader.DownloadFromUrl("https://dl.dropboxusercontent.com/u/5724095/XmlParseExample/stacksites.xml", openFileOutput("StackSites.xml", Context.MODE_PRIVATE));
 			} catch (FileNotFoundException e) {
@@ -74,6 +88,7 @@ public class MainActivity extends Activity {
 		
 		@Override
 		protected void onPostExecute(Void result){
+			//setup our Adapter and set it to the ListView.
 			mAdapter = new SitesAdapter(MainActivity.this, -1, SitesXmlParser.getStackSitesFromFile(MainActivity.this));
 			sitesList.setAdapter(mAdapter);
 			Log.i("StackSites", "adapter size = "+ mAdapter.getCount());
