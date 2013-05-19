@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.i("StackSites", "OnCreate()");
 		setContentView(R.layout.activity_main);
-		
+
 		//Get reference to our ListView
 		sitesList = (ListView)findViewById(R.id.sitesList);
 		
@@ -54,13 +54,13 @@ public class MainActivity extends Activity {
 			SitesDownloadTask download = new SitesDownloadTask();
 			download.execute();
 		}else{
-			mAdapter = new SitesAdapter(getApplicationContext(), -1, SitesXmlParser.getStackSitesFromFile(MainActivity.this));
+			mAdapter = new SitesAdapter(getApplicationContext(), -1, SitesXmlPullParser.getStackSitesFromFile(MainActivity.this));
 			sitesList.setAdapter(mAdapter);
 		}
 
 	}
 	
-	//Helper method to determin if Internet connection is available.
+	//Helper method to determine if Internet connection is available.
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result){
 			//setup our Adapter and set it to the ListView.
-			mAdapter = new SitesAdapter(MainActivity.this, -1, SitesXmlParser.getStackSitesFromFile(MainActivity.this));
+			mAdapter = new SitesAdapter(MainActivity.this, -1, SitesXmlPullParser.getStackSitesFromFile(MainActivity.this));
 			sitesList.setAdapter(mAdapter);
 			Log.i("StackSites", "adapter size = "+ mAdapter.getCount());
 		}

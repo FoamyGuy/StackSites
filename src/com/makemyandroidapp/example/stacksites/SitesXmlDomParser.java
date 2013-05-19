@@ -28,7 +28,7 @@ import android.util.Log;
  * This class is modeled after the example given here:
  * http://www.androidhive.info/2011/11/android-xml-parsing-tutorial/
  */
-public class SitesXmlParser {
+public class SitesXmlDomParser {
 	static final String KEY_SITE = "site";
 	static final String KEY_NAME = "name";
 	static final String KEY_LINK = "link";
