@@ -25,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- UNCOMMENT FOR ANNOTATIONS EXAMPLE 
+        <activity
+            android:name="com.makemyandroidapp.example.stacksites.MainAnnotationsActivity_"
+            android:label="@string/app_name" >
+        </activity>
+         -->
     </application>
 
 </manifest>

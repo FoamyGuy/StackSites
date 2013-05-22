@@ -29,6 +29,8 @@ public class SitesAdapter extends ArrayAdapter<StackSite> {
 
 	ImageLoader imageLoader;
 	DisplayImageOptions options;
+	
+	
 	public SitesAdapter(Context ctx, int textViewResourceId, List<StackSite> sites) {
 		super(ctx, textViewResourceId, sites);
 		

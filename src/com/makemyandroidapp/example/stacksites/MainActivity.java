@@ -93,9 +93,6 @@ public class MainActivity extends Activity {
 			sitesList.setAdapter(mAdapter);
 			Log.i("StackSites", "adapter size = "+ mAdapter.getCount());
 		}
-		
 	}
-
-
 
 }
